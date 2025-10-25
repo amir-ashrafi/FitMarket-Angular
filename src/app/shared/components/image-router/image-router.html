@@ -1,0 +1,13 @@
+<div class="rotator-container cursor-pointer" [class]="class">
+@for (item of images;track item.id) {
+
+    <img [src]="item.name" [alt]="item" class="rotator-img object-cover" draggable="false" [class.active]="item.id === currentIndex">
+  <div class="dots">
+    <button
+      class="dot"
+      [class.active]="item.id === currentIndex"
+      (click)="goToImage(item.id)"
+    ></button>
+  </div>
+}
+</div>

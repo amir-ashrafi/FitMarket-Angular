@@ -1,0 +1,110 @@
+<section  class="flex flex-col w-full border-b rounded-b-lg border-blue-400 shadow shadow-blue-600 ">
+  <div class="w-full relative">
+    <div class="absolute text-white bg-yellow-600 p-2">
+      Ads
+    </div>
+    <video autoplay muted class="w-full h-20 bg-blue-700" loop >
+      <source src="/fitmarket.mp4">
+    </video>
+  </div>
+  <div class="flex justify-around  md:px-10 flex-col px-3 sm:text-sm lg:text-lg">
+    <div class="flex justify-between items-center space-x-7">
+      <div class="nav-items md:space-x-4">
+        <a routerLink="/cart" class="">
+                <span class="material-symbols-outlined shadow p-2 shadow-blue-500   hover:shadow-md rounded-lg">
+                shopping_cart
+                </span>
+              </a>
+              <a routerLink="/login" class="flex  py-2 px-4 items-center w-44 space-x-2 justify-center rounded-lg shadow shadow-blue-500 hover:shadow-md duration-300">
+                        <span class="material-symbols-outlined">
+                          login
+                          </span>
+                        <p>ورود | ثبت نام</p>
+              </a>
+              <button class="cursor-pointer flex items-center">
+                  <span class="material-symbols-outlined shadow-blue-500 shadow p-2 hover:shadow-md rounded-lg">
+                    notifications
+                    </span>
+              </button>
+      </div>
+      <div class="flex justify-end relative w-full items-center ">
+        <input type="text" (focus)="isFocused = true" (blur)="isFocused = false" dir="rtl" class="w-full max-w-[700px] focus:shadow-md shadow-blue-500 px-5 rtl text-right shadow rounded-xl h-9 bg-slate-100">
+        <span class="material-symbols-outlined search absolute right-2" [class.hidden]="isFocused">
+          search
+        </span>
+      </div>
+      <div>
+        <button class="cursor-pointer">
+          <img
+            ngSrc="/fitmarket.webp"
+            width="100"
+            class="h-20 w-28 object-cover"
+            height="20"
+            alt="Fit Market"
+
+          />
+        </button>
+      </div>
+    </div>
+
+
+    <div class="flex justify-between w-full mb-3">
+        <button class="flex cursor-pointer items-center justify-center text-blue-600 font-bold bg-blue-100 px-2 rounded-lg">
+          <h6 class="">شهر خود را وارد کنید</h6>
+           <span class="material-symbols-outlined">
+                location_on
+            </span>
+        </button>
+        <div dir="rtl" class="flex justify-around">
+          <button (mouseenter)="openMenu()"  class="flex  category-button hover:bg-sky-100 rounded-lg justify-center border-l cursor-pointer font-medium border-gray-600 items-center px-2 lg:px-3 my-2">
+            <span class="material-symbols-outlined  pl-1">
+              menu
+            </span>
+            <h6>دسته بندی ها</h6>
+          </button>
+          @for (item of information_menu_main; track $index) {
+            <a [routerLink]="item.link" class="flex  text-slate-600 justify-center items-center my-2 px-1  lg:px-3">
+              <span class="material-symbols-outlined pl-1">
+                {{item.icon}}
+              </span>
+              <h6 class="hover:underline underline-offset-8">{{item.name}}</h6>
+            </a>
+          }
+        </div>
+    </div>@if(isMenuOpen){
+<div (click)="closeMenu()" class="absolute z-20 top-0 left-0 w-full  min-h-[1400px] md:min-h-[1050px] bg-black/40" dir="rtl">
+      <div (mouseleave)="closeMenu()" class="category-wrapper ">
+          <div class="category-menu w-[450px] sm:w-[550px] md:w-[700px] lg:w-[900px]">
+            <ul class="main-list">
+              @for ( cat of infomation;track cat.id) {
+                <li (mouseenter)="setActiveCategory(cat.id)" [class.active]="activeCategoryIndex === cat.id">{{cat.name}}</li>
+              }
+            </ul>
+            <div class="sub-list">
+              @if(activeCategory){
+                <ng-container >
+                  <ul class="flex flex-wrap space-x-10 space-y-10">
+                    @for (sub of activeCategory.childern; track sub.id) {
+                      <div class="w-[200px] flex flex-col">
+                      <a [routerLink]="sub.category" class="border-r font-semibold border-red-500 p-2 my-2">{{sub.name}}</a>
+                      @if(sub.children){
+                        <ul class="flex flex-col space-y-2">
+                          @for (item of sub.children; track item.id) {
+                            <li class="text-red-500 mr-4 list-disc"><a class="flex flex-col  text-slate-700 hover:underline underline-offset-8" [routerLink]="item.category">{{item.name}}</a></li>
+                          }
+                        </ul>
+                      }</div>
+                    }
+                  </ul>
+                </ng-container>
+              }
+            </div>
+          </div>
+
+      </div>
+</div>}
+  </div>
+  <div>
+
+  </div>
+</section>

@@ -1,0 +1,52 @@
+.rotator-container {
+  position: relative;
+  width: 100%;
+  height: 300px; /* می‌تونی ارتفاع رو عوض کنی */
+  overflow: hidden;
+}
+
+.rotator-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.rotator-img.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+  z-index: 20; /* باید بالاتر از تصاویر */
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: white;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot:hover {
+  transform: scale(1.1);
+
+}
+
+.dot.active {
+  background-color: white;
+}

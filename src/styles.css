@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+span{
+  color: rgb(94, 94, 94);
+
+}
+body {
+  font-family: 'Vazirmatn', sans-serif;
+}
