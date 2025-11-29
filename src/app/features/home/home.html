@@ -1,0 +1,31 @@
+<main>
+<app-image-router
+  class=""
+  [images]="banner_header"
+  [intervalMs]="2000"
+></app-image-router>
+<nav class="w-full justify-center flex-col items-center flex">
+  <section class="flex rounded-b-lg  w-[98%]  justify-around items-center bg-blue-50 shadow shadow-black/4-">
+    @for (item of banner_icon; track item.id) {
+      <div class="flex flex-col justify-center items-center  space-y-1 py-3">
+
+        <span class="material-symbols-outlined">
+    {{item.icon}}
+    </span>
+        <h1 class="font-medium text-base lg:text-lg lg:font-normal">{{item.h1}}</h1>
+        <h6 class="text-xs ">{{item.h6}}</h6>
+      </div>
+    }
+  </section>
+  <div class="flex flex-col  items-center">
+    <div class="font-semibold flex space-x-2 text-2xl pt-8 pb-4"><h1 class="text-red-500"> پیشنهادی</h1><h1>دسته بندی</h1></div>
+  <app-slider-component
+  [items]="item_suggestions"
+  [intervalMs]="3000"
+  />
+  </div>
+  <app-banner-item-ads/>
+
+</nav>
+</main>
+

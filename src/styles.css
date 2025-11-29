@@ -6,4 +6,5 @@ span{
 }
 body {
   font-family: 'Vazirmatn', sans-serif;
+  overflow-x: hidden;
 }

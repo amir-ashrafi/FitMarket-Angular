@@ -1,13 +1,23 @@
 <div class="rotator-container cursor-pointer" [class]="class">
-@for (item of images;track item.id) {
+  @for (item of images; track item.id; let i = $index) {
+    <img
+      [src]="item.name"
+      [alt]="item.name"
+      class="rotator-img object-cover"
+      draggable="false"
+      [class.active]="i === currentIndex"
+      [class.left]="i === (currentIndex - 1 + images.length) % images.length"
+      [class.right]="i === (currentIndex + 1) % images.length"
+    />
+  }
 
-    <img [src]="item.name" [alt]="item" class="rotator-img object-cover" draggable="false" [class.active]="item.id === currentIndex">
   <div class="dots">
-    <button
-      class="dot"
-      [class.active]="item.id === currentIndex"
-      (click)="goToImage(item.id)"
-    ></button>
+    @for (item of images; track item.id; let i = $index) {
+      <button
+        class="dot"
+        [class.active]="i === currentIndex"
+        (click)="goToImage(i)"
+      ></button>
+    }
   </div>
-}
 </div>

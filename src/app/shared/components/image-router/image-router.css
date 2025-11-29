@@ -1,7 +1,7 @@
 .rotator-container {
   position: relative;
   width: 100%;
-  height: 300px; /* می‌تونی ارتفاع رو عوض کنی */
+  height: 300px;
   overflow: hidden;
 }
 
@@ -11,23 +11,45 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
 }
 
 .rotator-img.active {
+  transform: translateX(0);
   opacity: 1;
   z-index: 2;
+}
+
+.rotator-img.left {
+  transform: translateX(-100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.rotator-img.right {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.rotator-img:not(.active):not(.left):not(.right) {
+  opacity: 0;
+  z-index: 0;
 }
 
 .dots {
   position: absolute;
   bottom: 10px;
   left: 50%;
-  display: flex;
-  gap: 8px;
   transform: translateX(-50%);
-  z-index: 20; /* باید بالاتر از تصاویر */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: rgba(255, 255, 255, 0.214);
+  padding: 5px 10px;
+  border-radius: 15px;
+  z-index: 20;
 }
 
 .dot {
@@ -36,17 +58,15 @@
   border-radius: 50%;
   border: none;
   background-color: rgba(255, 255, 255, 0.5);
-  border: white;
   cursor: pointer;
-  z-index: 10;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .dot:hover {
   transform: scale(1.1);
-
 }
 
 .dot.active {
   background-color: white;
+  height: 20px;
 }

@@ -1,13 +1,7 @@
 <header>
 <app-navbar></app-navbar>
 </header>
-<main>
-<app-image-router
-  class="-translate-y-2"
-  [images]="banner_header"
-  [intervalMs]="2000"
-></app-image-router>
-</main>
+<router-outlet/>
 <footer>
   <app-footer></app-footer>
 </footer>

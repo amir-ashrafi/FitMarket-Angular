@@ -1,0 +1,25 @@
+<div class="slider-root">
+  <button class="nav left" (click)="prev()">‹</button>
+
+  <div class="viewport" #viewport>
+    <div
+      class="track"
+      #track
+      [class.anim]="animating"
+      [style.transform]="'translateX(' + translateX + 'px)'"
+    >
+     <div class="track " #track [style.transform]="'translateX(' + translateX + 'px)'">
+  @for(it of items.concat(items); track trackById($index, it); let i = $index) {
+    <div class="slide ">
+      @if (it.src) {
+        <img [src]="it.src" [alt]="it.name || ''" class="object-contain " draggable="false" />
+      }
+      <div class="title">{{ it.name }}</div>
+    </div>
+  }
+</div>
+    </div>
+  </div>
+  <button class="nav right" (click)="next()">›</button>
+</div>
+

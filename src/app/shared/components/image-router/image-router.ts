@@ -1,22 +1,22 @@
-import { Component, Input, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, HostListener, ChangeDetectorRef } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-image-router',
-  imports: [],
   templateUrl: './image-router.html',
-  styleUrl: './image-router.css'
+  styleUrls: ['./image-router.css']
 })
-export class ImageRouter {
-  @Input() images:{id:number,name:string}[]= [];
-  @Input() intervalMs = 2000; // تغییر هر 2 ثانیه (قابل تغییر)
-@Input() class = ''
+export class ImageRouter implements OnInit, OnDestroy {
+  @Input() images: { id: number; name: string }[] = [];
+  @Input() intervalMs = 2000;
+  @Input() class = '';
+
   currentIndex = 0;
   private sub?: Subscription;
   paused = false;
-trackById(index: number, item: {id:number,name:string}) {
-  return item.id;
-}
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
   ngOnInit(): void {
     if (this.images.length > 1) {
       this.startLoop();
@@ -25,16 +25,20 @@ trackById(index: number, item: {id:number,name:string}) {
 
   startLoop() {
     this.sub = interval(this.intervalMs).subscribe(() => {
-      if (!this.paused) this.nextImage();
+      if (!this.paused) {
+        this.nextImage();
+      }
     });
   }
 
   nextImage() {
-    this.currentIndex = (this.currentIndex + 1) % this.images.length; // لوپ بینهایت
+    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    this.cdr.markForCheck();
   }
 
   goToImage(index: number) {
     this.currentIndex = index;
+    this.cdr.markForCheck(); 
   }
 
   @HostListener('mouseenter') onEnter() {

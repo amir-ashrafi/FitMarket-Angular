@@ -1,4 +1,4 @@
-<section  class="flex flex-col w-full border-b rounded-b-lg border-blue-400 shadow shadow-blue-600 ">
+<section  class="flex flex-col w-full  ">
   <div class="w-full relative">
     <div class="absolute text-white bg-yellow-600 p-2">
       Ads
@@ -56,7 +56,7 @@
             </span>
         </button>
         <div dir="rtl" class="flex justify-around">
-          <button (mouseenter)="openMenu()"  class="flex  category-button hover:bg-sky-100 rounded-lg justify-center border-l cursor-pointer font-medium border-gray-600 items-center px-2 lg:px-3 my-2">
+          <button (mouseenter)="openMenu()"  class="flex  category-button hover:bg-sky-100 justify-center border-l-2 cursor-pointer font-medium border-gray-600 items-center px-2 lg:px-3 my-2">
             <span class="material-symbols-outlined  pl-1">
               menu
             </span>
@@ -86,11 +86,11 @@
                   <ul class="flex flex-wrap space-x-10 space-y-10">
                     @for (sub of activeCategory.childern; track sub.id) {
                       <div class="w-[200px] flex flex-col">
-                      <a [routerLink]="sub.category" class="border-r font-semibold border-red-500 p-2 my-2">{{sub.name}}</a>
+                      <a [routerLink]="sub.category" class="border-r-4  font-semibold border-blue-500 p-2 my-2">{{sub.name}}</a>
                       @if(sub.children){
                         <ul class="flex flex-col space-y-2">
                           @for (item of sub.children; track item.id) {
-                            <li class="text-red-500 mr-4 list-disc"><a class="flex flex-col  text-slate-700 hover:underline underline-offset-8" [routerLink]="item.category">{{item.name}}</a></li>
+                            <li class="text-blue-800 mr-7  list-disc"><a class="flex flex-col  text-slate-700 hover:underline underline-offset-8" [routerLink]="item.category">{{item.name}}</a></li>
                           }
                         </ul>
                       }</div>

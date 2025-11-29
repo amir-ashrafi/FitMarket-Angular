@@ -1,0 +1,9 @@
+<section class="flex flex-wrap justify-center items-center max-w-4xl lg:max-w-6xl  w-full md:px-10 lg:px-5  py-10">
+@for (item of images; track item.id) {
+<a href="" [className]="item.class" >
+<img [src]="item.src" class="shadow" [classList]="item.id >= 2?'h-36 md:h-56 rounded-3xl object-cover w-full lg:h-96 border-2 border-sky-500 hover:shadow-lg shadow-sky-200 ':'lg:h-full border-2 border-green-500 hover:shadow-lg shadow-green-100 object-cover w-full rounded-3xl'"
+  >
+</a>
+}
+</section>
+
